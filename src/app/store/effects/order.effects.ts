@@ -12,7 +12,7 @@ import * as orderActions from "../actions/order.actions";
 
 @Injectable()
 
-export class CustomerEffect {
+export class OrderEffect {
   constructor(
     private actions$: Actions,
     private orderService: OrderService

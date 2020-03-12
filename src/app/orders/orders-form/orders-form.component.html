@@ -1,1 +1,116 @@
-<p>orders-form works!</p>
+<h3>Собери пиццу своей мечты</h3>
+
+<form [formGroup]="formOrder" (ngSubmit)="createOrder()">
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputEmail4">Фамилия</label>
+            <input type="text" formControlName="surname" class="form-control" id="surname"
+                placeholder="Введите свое фамилию"
+                [ngClass]="{'is-invalid': formOrder.get('surname').invalid && formOrder.get('surname').touched}">
+                <span class="text-danger" *ngIf="formOrder.get('surname').invalid && formOrder.get('surname').touched">
+                    <span *ngIf="formOrder.get('surname').errors['required']">Поле фамилия не должно быть пустым</span>
+                    <span
+                        *ngIf="formOrder.get('surname').errors['minlength'] && formOrder.get('surname').errors['minlength']['requiredLength']">
+                        Фамилия должна быть больше {{formOrder.get('surname').errors['minlength']['requiredLength']}} символов.
+                        Сейчас {{formOrder.get('surname').errors['minlength']['actualLength']}}
+                    </span>
+                    <span
+                        *ngIf="formOrder.get('surname').errors['maxlength'] && formOrder.get('surname').errors['maxlength']['requiredLength']">
+                        Фамилия не должна быть больше {{formOrder.get('surname').errors['maxlength']['requiredLength']}} символов.
+                        Сейчас {{formOrder.get('surname').errors['maxlength']['actualLength']}}
+                    </span>
+                </span>
+        </div>
+        <div class="form-group col-md-6">
+            <label for="inputPassword4">Имя</label>
+            <input type="text" formControlName="name" class="form-control" id="name" placeholder="Введите свое имя"
+            [ngClass]="{'is-invalid': formOrder.get('name').invalid && formOrder.get('name').touched}">
+            <span class="text-danger" *ngIf="formOrder.get('name').invalid && formOrder.get('name').touched">
+                <span *ngIf="formOrder.get('name').errors['required']">Поле имя не должно быть пустым</span>
+                <span
+                    *ngIf="formOrder.get('name').errors['minlength'] && formOrder.get('name').errors['minlength']['requiredLength']">
+                    Имя должнo быть больше {{formOrder.get('name').errors['minlength']['requiredLength']}} символов.
+                    Сейчас {{formOrder.get('name').errors['minlength']['actualLength']}}
+                </span>
+                <span 
+                    *ngIf="formOrder.get('name').errors['maxlength'] && formOrder.get('name').errors['maxlength']['requiredLength']">
+                    Имя не должнo быть больше {{formOrder.get('name').errors['maxlength']['requiredLength']}} символов.
+                    Сейчас {{formOrder.get('name').errors['maxlength']['actualLength']}}
+                </span>
+            </span>
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress">Телефон заказа</label>
+        <input type="text" formControlName="phone" class="form-control" id="inputAddress" placeholder="Ввведите телефон для заказа"
+        [ngClass]="{'is-invalid': formOrder.get('phone').invalid && formOrder.get('phone').touched}">
+        <span class="text-danger" *ngIf="formOrder.get('phone').invalid && formOrder.get('phone').touched">
+            <span *ngIf="formOrder.get('phone').errors['required']">Номер телефона не должен быть пустым</span>
+            <span
+                *ngIf="formOrder.get('phone').errors['minlength'] && formOrder.get('phone').errors['minlength']['requiredLength']">
+                Телефон должен быть больше {{formOrder.get('phone').errors['minlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('phone').errors['minlength']['actualLength']}}
+            </span>
+            <span
+                *ngIf="formOrder.get('phone').errors['maxlength'] && formOrder.get('phone').errors['maxlength']['requiredLength']">
+                Телефон не должен превышать {{formOrder.get('phone').errors['maxlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('phone').errors['maxlength']['actualLength']}}
+            </span>
+        </span>
+    </div>
+    <div class="form-group">
+        <label for="inputAddress2">Адрес</label>
+        <input type="text" formControlName="address" class="form-control" id="inputAddress2" placeholder="Введите адрес куда доставить заказ"
+        [ngClass]="{'is-invalid': formOrder.get('address').invalid && formOrder.get('address').touched}">
+        <span class="text-danger" *ngIf="formOrder.get('address').invalid && formOrder.get('address').touched">
+            <span *ngIf="formOrder.get('address').errors['required']">Адрес не должен быть пустым</span>
+            <span
+                *ngIf="formOrder.get('address').errors['minlength'] && formOrder.get('address').errors['minlength']['requiredLength']">
+                Адрес должен быть больше {{formOrder.get('address').errors['minlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('address').errors['minlength']['actualLength']}}
+            </span>
+            <span
+                *ngIf="formOrder.get('address').errors['maxlength'] && formOrder.get('address').errors['maxlength']['requiredLength']">
+                Адрес не должен быть больше {{formOrder.get('address').errors['maxlength']['requiredLength']}} символов.
+                Сейчас {{formOrder.get('address').errors['maxlength']['actualLength']}}
+            </span>
+        </span>
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="inputCity">Выберите пиццу</label>
+            <select id="inputState"  formControlName="pizza" class="form-control">
+                <option value="Русская">Русская</option>
+                <option>Неаполитанская</option>
+                <option>Четыре сыра</option>
+                <option>Пеперони</option>
+                <option>Ассорти</option>
+            </select>
+        </div>
+        <div class="form-group col-md-4">
+            <label for="inputState">Тесто</label>
+            <select id="inputState" formControlName="dough" class="form-control">
+                <option value="Традиционное">Традиционное</option>
+                <option>Тонкое</option>
+            </select>
+        </div>
+        <div class="form-group col-md-2">
+            <label for="inputZip">Размер пиццы</label>
+            <select id="inputState" formControlName="size" class="form-control">
+                <option value="S">S</option>
+                <option>M</option>
+                <option>L</option>
+                <option>XL</option>
+            </select>
+        </div>
+    </div>
+
+    <label for="inputIng">Дополнительные ингредиенты</label>
+    <div formGroupName="options">
+        <div *ngFor="let key of ingKey; let i = index" style="display: inline-block; width: 200px">
+            <input type="checkbox" id="inlineCheckbox{{i}}" value="1" [formControlName]="key">
+            <label for="inlineCheckbox{{i}}">{{ingredients[i]}}</label>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary mb-2" [disabled]="formOrder.invalid || formOrder.disabled"><i class="fas fa-plus" ></i>&nbsp;Добавить заказ</button>
+</form>

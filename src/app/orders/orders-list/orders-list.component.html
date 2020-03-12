@@ -1,1 +1,30 @@
-<p>orders-list works!</p>
+<h4>Список заказов</h4>
+<table class="table table-hover">
+  <thead>
+    <tr class="table-primary">
+      <th scope="col">Имя</th>
+      <th scope="col">Телефон</th>
+      <th scope="col">Адрес</th>
+      <th scope="col">Пицца</th>
+      <th scope="col">Тесто</th>
+      <th scope="col">Размер</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td colspan="5" class="alert alert-danger" *ngIf="error$ | async as error">{{error}}</td>
+    </tr>
+    <tr>
+    <tr *ngFor="let order of (orders$ |async), let i=index">
+      <th scope="row">{{order.surname}} {{order.name}}</th>
+      <td>{{order.phone}}</td>
+      <td>{{order.address}}</td>
+      <td>{{order.pizza}}</td>
+      <td>{{order.dough}}</td>
+      <td>{{order.size}}</td>
+      <th>
+      </th>
+    </tr>
+  </tbody>
+</table>

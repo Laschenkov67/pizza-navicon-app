@@ -1,7 +1,11 @@
 export interface Order {
   id?: number;
+  surname: string;
   name: string;
   phone: string;
   address: string;
-  membership: string;
+  pizza:string,
+  dough: string,
+  size: string,
+  ingredients: []
 }
